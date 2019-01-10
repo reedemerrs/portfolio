@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button, Container, Form, FormGroup, Input, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col } from 'reactstrap';
 import { Textarea as MdTextarea } from 'reactstrap-md-textarea';
 import AppNavbar from './AppNavbar';
 
@@ -96,93 +96,117 @@ class ClientEdit extends Component {
       <Container>
         {title}
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Label for="name">Name</Label>
-            <Input type="text" name="name" id="name" value={item.name || ''} required
-                   onChange={this.handleChange} autoComplete="name"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="email">Email</Label>
-            <Input type="email" name="email" id="email" value={item.email || ''}
-                   onChange={this.handleChange} autoComplete="email"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="phoneNumber">Phone Number</Label>
-            <Input type="number" pattern="^(0\\d{2}\\\\)(\\d{3}-\\d{4})|(\\d{2}-\\d{3})|(\\d{3}-\\d{3})$" name="phoneNumber" id="phoneNumber" value={item.phoneNumber || ''}
-                   onChange={this.handleChange} autoComplete="phoneNumber"
-                   title="Please insert a valid phone number!"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="identificationNumber">Identification Number</Label>
-            <Input type="text" pattern="[0-9]{8}" maxLength="8" name="identificationNumber" id="identificationNumber" value={item.identificationNumber || ''}
-                   onChange={this.handleChange} autoComplete="identificationNumber" required
-                   title="Identification Number should contain exactly 8 numbers!"/>
-          </FormGroup>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label for="name">Name</Label>
+                <Input type="text" name="name" id="name" value={item.name || ''} required
+                  onChange={this.handleChange} autoComplete="name"/>
+              </FormGroup>              
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="incomeLevel">Income Level</Label>
+                <Dropdown id="incomeLevel" isOpen={this.state.incomeLevelOpen} toggle={this.toggleDropdown}>
+                  <DropdownToggle caret>
+                    {this.state.item.incomeLevel || 'Select income level'}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem onClick={this.changeDropdownValue}>TO_200K</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>FROM_200K_TO_500K</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>OVER_MILLION</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>OVER_2_MILLION</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label for="email">Email</Label>
+                <Input type="email" name="email" id="email" value={item.email || ''}
+                  onChange={this.handleChange} autoComplete="email"/>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="status">Status</Label>
+                <Dropdown id="status" isOpen={this.state.statusOpen} toggle={this.toggleDropdown}>
+                  <DropdownToggle caret>
+                   {this.state.item.status || 'Select status'}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem onClick={this.changeDropdownValue}>NOT_USING_LOANS</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>MEETING</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>APPLICATED</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>CALL_PERIODICALLY</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>CONTACTED_VIA_PHONE</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label for="phoneNumber">Phone Number</Label>
+                <Input type="number" pattern="^(0\\d{2}\\\\)(\\d{3}-\\d{4})|(\\d{2}-\\d{3})|(\\d{3}-\\d{3})$" name="phoneNumber" id="phoneNumber" value={item.phoneNumber || ''}
+                  onChange={this.handleChange} autoComplete="phoneNumber"
+        	      title="Please insert a valid phone number!"/>
+        	  </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="municipality">Municipality</Label>
+                <Dropdown id="municipality" isOpen={this.state.municipalityOpen} toggle={this.toggleDropdown}>
+                  <DropdownToggle caret>
+                    {this.state.item.municipality || 'Select municipality'}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem onClick={this.changeDropdownValue}>CUKARICA</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>NOVI_BEOGRAD</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>PALILULA</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>RAKOVICA</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>SAVSKI_VENAC</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>STARI_GRAD</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>VOZDOVAC</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>VRACAR</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>ZEMUN</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>ZVEZDARA</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>BARAJEVO</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>GROCKA</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>LAZAREVAC</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>MLADENOVAC</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>OBRENOVAC</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>SOPOT</DropdownItem>
+                    <DropdownItem onClick={this.changeDropdownValue}>SURCIN</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label for="identificationNumber">Identification Number</Label>
+                <Input type="text" pattern="[0-9]{8}" maxLength="8" name="identificationNumber" id="identificationNumber" value={item.identificationNumber || ''}
+                  onChange={this.handleChange} autoComplete="identificationNumber" required
+                  title="Identification Number should contain exactly 8 numbers!"/>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="lastContactDate">Last Contact Date</Label>
+                <Input type="date" name="lastContactDate" id="lastContactDate" value={item.lastContactDate || ''}
+                  onChange={this.handleChange} autoComplete="lastContactDate"/>
+              </FormGroup>
+            </Col>
+          </Row>
           <FormGroup>
             <Label for="contactPerson">Contact Person</Label>
             <Input type="text" name="contactPerson" id="contactPerson" value={item.contactPerson || ''}
-                   onChange={this.handleChange} autoComplete="contactPerson"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="lastContactDate">Last Contact Date</Label>
-            <Input type="date" name="lastContactDate" id="lastContactDate" value={item.lastContactDate || ''}
-                   onChange={this.handleChange} autoComplete="lastContactDate"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="incomeLevel">Income Level</Label>
-            <Dropdown id="incomeLevel" isOpen={this.state.incomeLevelOpen} toggle={this.toggleDropdown}>
-              <DropdownToggle caret>
-                {this.state.item.incomeLevel || 'Select income level'}
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={this.changeDropdownValue}>TO_200K</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>FROM_200K_TO_500K</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>OVER_MILLION</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>OVER_2_MILLION</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </FormGroup>
-          <FormGroup>
-            <Label for="status">Status</Label>
-            <Dropdown id="status" isOpen={this.state.statusOpen} toggle={this.toggleDropdown}>
-              <DropdownToggle caret>
-                {this.state.item.status || 'Select status'}
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={this.changeDropdownValue}>NOT_USING_LOANS</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>MEETING</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>APPLICATED</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>CALL_PERIODICALLY</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>CONTACTED_VIA_PHONE</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </FormGroup>
-          <FormGroup>
-            <Label for="municipality">Municipality</Label>
-            <Dropdown id="municipality" isOpen={this.state.municipalityOpen} toggle={this.toggleDropdown}>
-              <DropdownToggle caret>
-                {this.state.item.municipality || 'Select municipality'}
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={this.changeDropdownValue}>CUKARICA</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>NOVI_BEOGRAD</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>PALILULA</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>RAKOVICA</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>SAVSKI_VENAC</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>STARI_GRAD</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>VOZDOVAC</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>VRACAR</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>ZEMUN</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>ZVEZDARA</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>BARAJEVO</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>GROCKA</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>LAZAREVAC</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>MLADENOVAC</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>OBRENOVAC</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>SOPOT</DropdownItem>
-                <DropdownItem onClick={this.changeDropdownValue}>SURCIN</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+              onChange={this.handleChange} autoComplete="contactPerson"/>
           </FormGroup>
           <FormGroup>
             <Label for="description">Description</Label>
