@@ -15,7 +15,6 @@ class Calculator extends Component {
       processingFeeTotal: 0
     };
     this.handleChange = this.handleChange.bind(this);
-    this.pmt = this.pmt.bind(this);
   }
 
   handleChange(event) {
@@ -28,6 +27,28 @@ class Calculator extends Component {
     const rate = annualInterestRate / 1200; // calculates monthly interest rate as a number
     const pow = Math.pow((1 + rate), timeLimit);
     return -(rate * amount * pow) / (1 - pow);
+  }
+
+  totalInterest() {
+    const { timeLimit, amount } = this.state;
+    return this.pmt() * timeLimit - amount; 
+  }
+
+  averageInterestRate() {
+    const { timeLimit, amount } = this.state;
+	return ((this.totalInterest() / amount) / (timeLimit / 12)) * 100; 
+  }
+
+  processingFeeTotal() {
+    const { processingFee, amount } = this.state;
+    return amount * processingFee / 100;
+  }
+
+  total() {
+	const { otherExpenses, amount } = this.state;
+	console.log(otherExpenses + this.processingFeeTotal() + this.totalInterest());
+	console.log(amount);
+    return +otherExpenses + +this.processingFeeTotal() + +this.totalInterest() + +amount;
   }
 
   render() {
@@ -96,7 +117,7 @@ class Calculator extends Component {
             <Label for="totalInterest">The total interest paid by the client</Label>
           </Col>
           <Col>
-            <Input type="number" name="totalInterest" id="totalInterest" autoComplete="totalInterest" readOnly/>
+            <Input type="number" name="totalInterest" id="totalInterest" value={this.totalInterest() || ''} autoComplete="totalInterest" readOnly/>
           </Col>
         </Row>
         <Row>
@@ -104,7 +125,7 @@ class Calculator extends Component {
             <Label for="averageInterestRate">Average interest rate on an annual basis in %</Label>
           </Col>
           <Col>
-            <Input type="number" name="averageInterestRate" id="averageInterestRate" autoComplete="averageInterestRate" readOnly/>
+            <Input type="number" name="averageInterestRate" id="averageInterestRate" value={this.averageInterestRate() || ''} autoComplete="averageInterestRate" readOnly/>
           </Col>
         </Row>
         <Row>
@@ -112,7 +133,7 @@ class Calculator extends Component {
             <Label for="processingFeeTotal">Processing fee</Label>
           </Col>
           <Col>
-            <Input type="number" name="processingFeeTotal" id="processingFeeTotal" value={this.state.amount * this.state.processingFee} autoComplete="processingFeeTotal" readOnly/>
+            <Input type="number" name="processingFeeTotal" id="processingFeeTotal" value={this.processingFeeTotal() || ''} autoComplete="processingFeeTotal" readOnly/>
           </Col>
         </Row>
         <Row>
@@ -128,7 +149,7 @@ class Calculator extends Component {
             <Label for="total">TOTAL principal + expenses</Label>
           </Col>
           <Col>
-            <Input type="number" name="total" id="total" autoComplete="total" readOnly/>
+            <Input type="number" name="total" id="total" value={this.total() || ''} autoComplete="total" readOnly/>
           </Col>
         </Row>
       </Container>
