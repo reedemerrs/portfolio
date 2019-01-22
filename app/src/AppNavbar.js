@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 export default class AppNavbar extends Component {
   constructor(props) {
@@ -29,6 +29,16 @@ export default class AppNavbar extends Component {
           <NavItem>
             <NavLink target="_blank" href="http://pretraga2.apr.gov.rs/unifiedentitysearch">APR General Info</NavLink>
           </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              Tools
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem tag="a" href="/calculator">
+                Calculator
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </Nav>
       </Collapse>
     </Navbar>;
