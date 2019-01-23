@@ -106,7 +106,7 @@ class Calculator extends Component {
             <Label for="monthlyPayment">Monthly payment</Label>
           </Col>
           <Col>
-            <Input type="number" name="monthlyPayment" id="monthlyPayment" value={this.pmt() || ''} autoComplete="monthlyPayment" readOnly/>
+            <Input type="number" name="monthlyPayment" id="monthlyPayment" value={this.pmt().toFixed(2) || ''} autoComplete="monthlyPayment" readOnly/>
           </Col>
         </Row>
         <br/>
@@ -117,7 +117,7 @@ class Calculator extends Component {
             <Label for="totalInterest">The total interest paid by the client</Label>
           </Col>
           <Col>
-            <Input type="number" name="totalInterest" id="totalInterest" value={this.totalInterest() || ''} autoComplete="totalInterest" readOnly/>
+            <Input type="number" name="totalInterest" id="totalInterest" value={this.totalInterest().toFixed(2) || ''} autoComplete="totalInterest" readOnly/>
           </Col>
         </Row>
         <Row>
@@ -125,7 +125,7 @@ class Calculator extends Component {
             <Label for="averageInterestRate">Average interest rate on an annual basis in %</Label>
           </Col>
           <Col>
-            <Input type="number" name="averageInterestRate" id="averageInterestRate" value={this.averageInterestRate() || ''} autoComplete="averageInterestRate" readOnly/>
+            <Input type="number" name="averageInterestRate" id="averageInterestRate" value={this.averageInterestRate().toFixed(2) || ''} autoComplete="averageInterestRate" readOnly/>
           </Col>
         </Row>
         <Row>
@@ -149,7 +149,7 @@ class Calculator extends Component {
             <Label for="total">TOTAL principal + expenses</Label>
           </Col>
           <Col>
-            <Input type="number" name="total" id="total" value={this.total() || ''} autoComplete="total" readOnly/>
+            <Input type="number" name="total" id="total" value={this.total().toFixed(2) || ''} autoComplete="total" readOnly/>
           </Col>
         </Row>
       </Container>
