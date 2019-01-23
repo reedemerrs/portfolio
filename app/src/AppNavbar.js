@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 export default class AppNavbar extends Component {
   constructor(props) {
@@ -34,9 +34,7 @@ export default class AppNavbar extends Component {
               Tools
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem tag="a" href="/calculator">
-                Calculator
-              </DropdownItem>
+              <Button color="link"><Link to="/calculator">Calculator</Link></Button>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
